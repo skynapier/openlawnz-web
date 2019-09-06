@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Table, Header, Segment, Grid, List } from "semantic-ui-react";
+
 import { Link } from "react-router-dom";
 import ApiService from "../js/ApiService";
+
+import "../scss/singleCase.scss";
 
 class SingleCase extends Component {
 	constructor({ match }) {
@@ -34,81 +36,84 @@ class SingleCase extends Component {
 
 		return (
 			<React.Fragment>
-				<Header as="h2">{this.state.singleCase.case_name}</Header>
+				<h2 class="header">{this.state.singleCase.case_name}</h2>
 				<br />
-				<Grid>
-					<Grid.Row>
-						<Grid.Column width={10}>
-							<Segment>
+				<div class="two-column-grid">
+					<div class="row">
+						<div class="left-column" >
+							<div class="segment">
 								<iframe
 									src={`https://docs.google.com/gview?url=https://s3-ap-southeast-2.amazonaws.com/openlaw-pdfs/${
 										this.state.singleCase.PDF.bucket_key
 									}&embedded=true`}
-									style={{ width: "100%", height: 500 }}
+									style={{ width: 576, height: 478.12 }}
 									frameBorder={0}
 								/>
-							</Segment>
-						</Grid.Column>
-						<Grid.Column width={6}>
-							<Header as="h3">Cites</Header>
+							</div>
+						</div>
+						<div class="right-column">
+							<h3 class="header">Cites</h3>
 							{this.state.singleCase.cites &&
 								(this.state.singleCase.cites.length === 0 ? (
 									<p>No cases</p>
 								) : (
-									<List relaxed="very" divided>
+									<div role="listitem" class="item" >
 										{this.state.singleCase.cites.map(function(obj) {
 											return (
-												<List.Item key={`cites-reference-${obj.id}`}>
+												<div role="listitem" class="item" key={`cites-reference-${obj.id}`}>
 													<Link to={`/case/${obj.id}`}>{obj.case_name}</Link>
-												</List.Item>
+												</div>
 											);
 										})}
-									</List>
+									</div>
 								))}
+							<hr></hr>	
 
-							<Header as="h3">Cited By</Header>
+							<h3 class="header">Cited By</h3>
 							{this.state.singleCase.cited_by &&
 								(this.state.singleCase.cited_by.length === 0 ? (
 									<p>No cases</p>
 								) : (
-									<List relaxed="very" divided>
+									<div role="listitem" class="item" >
 										{this.state.singleCase.cited_by.map(function(obj) {
 											return (
-												<List.Item key={`cited-by-reference-${obj.id}`}>
+												<div role="listitem" class="item" key={`cited-by-reference-${obj.id}`}>
 													<Link to={`/case/${obj.id}`}>{obj.case_name}</Link>
-												</List.Item>
+												</div>
 											);
 										})}
-									</List>
+									</div>
 								))}
+							<hr></hr>	
 
-							<Header as="h3">Legislation Referenced</Header>
+							<h3 class="header">Legislation Referenced</h3>
 							{this.state.singleCase.legislationReferences &&
 								(this.state.singleCase.legislationReferences.length === 0 ? (
 									<p>No legislation</p>
 								) : (
-									<Table celled>
-										<Table.Header>
-											<Table.Row>
-												<Table.HeaderCell>Title</Table.HeaderCell>
-												<Table.HeaderCell>Section</Table.HeaderCell>
-											</Table.Row>
-										</Table.Header>
-										<Table.Body>
+									<table cellspacing="0" cellpadding="0">
+										<thead class="">
+											<tr class="">
+												<th class="title">Title</th>
+												<th class="section">Section</th>
+											</tr>
+										</thead>
+										<tbody class="">
 											{this.state.singleCase.legislationReferences.map(function(obj, i) {
 												return (
-													<Table.Row key={`legislation-reference-${i}`}>
-														<Table.Cell>{obj.legislation.title}</Table.Cell>
-														<Table.Cell>{obj.section}</Table.Cell>
-													</Table.Row>
+													<tr class="" key={`legislation-reference-${i}`}>
+														<td class="">{obj.legislation.title}</td>
+														<td class="">{obj.section}</td>
+													</tr>
 												);
 											})}
-										</Table.Body>
-									</Table>
+										</tbody>
+									</table>
 								))}
-						</Grid.Column>
-					</Grid.Row>
-				</Grid>
+							<hr></hr>	
+						</div>
+					</div>
+				</div>
 			</React.Fragment>
 		);
 	}

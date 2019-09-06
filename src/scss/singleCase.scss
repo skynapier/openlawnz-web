@@ -1,0 +1,111 @@
+$left-column-width:576px;
+$right-column-width:309px;
+$primary-color:#3F7578;
+$key-font-color:#00A8B3;
+$odd-row-color: #fff;
+$even-row-color:#F7F7F7;
+$pdf-reader-padding-color:rgba(255, 255, 255, 0.47);
+$primary-font-family: Avenir LT Std;
+
+.two-column-grid {
+    left: 15.69%;
+    right: 15.76%;
+    top: 32.88%;
+    bottom: 15.82%;
+    height: 749px;
+    width: 987px;
+
+    background: $pdf-reader-padding-color;
+ 
+    .row{
+        .left-column{
+            width: $left-column-width;
+            height: 478.12px;
+            left: 257px;
+            top: 526px;
+            float: left;
+        }
+
+        .right-column{
+            width: $right-column-width;
+            margin-left: 51px;
+            margin-right: 51px;
+            float: left;
+
+            div{
+                width: $right-column-width;
+                .item{
+                    a{
+                        color:$key-font-color;
+                    }
+                }
+            }
+
+            hr{
+                border: 1px solid #BDBDBD;
+            }
+
+            h3{
+                width: 264px;
+                height: 31px;
+
+                font-family: $primary-font-family;
+                font-size: 16px;
+                line-height: 19px;
+
+                color:$primary-color;
+            }
+
+            table{
+                width: $right-column-width;
+                text-align: left;
+                text-indent:20px;
+                table-layout:fixed;
+
+                td{
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    word-break:keep-all;
+                    white-space:nowrap;
+                }
+
+               
+                th{
+                    background: $primary-color;
+                    color:#FFF;
+                    height: 35px;
+                    font-family: $primary-font-family;
+                    font-size: 14px;
+                    line-height: 17px;                    
+                }
+
+                tr{
+                    .title{
+                        width:200px;
+                    }
+                }
+
+                tr:nth-child(odd){
+                    font-family: $primary-font-family;
+                    font-size: 12px;
+                    line-height: 14px;
+                    background: $odd-row-color;
+                    height: 35px;
+                }
+
+                tr:nth-child(even){
+                    font-family: $primary-font-family;
+                    font-size: 12px;
+                    line-height: 14px;
+                    background: $even-row-color;
+                    height: 35px;
+                    
+                }
+            }
+           
+        }
+
+        
+    }
+}
+
